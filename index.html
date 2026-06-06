@@ -5,14 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <title>WorkBee Focus</title>
 
+  <!-- PWA ve Mobil Ayarları -->
   <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#fbbf24">
+  <meta name="theme-color" content="#111111">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="WorkBee">
   <link rel="apple-touch-icon" href="icon-192.png">
-
-  <meta http-equiv="refresh" content="0;url=https://workbee-focus.streamlit.app">
 
   <style>
     html, body {
@@ -20,14 +19,28 @@
       padding: 0;
       width: 100%;
       height: 100%;
-      background-color: #111111; /* Yönlenirken göz kırpan siyah/koyu ekran */
+      overflow: hidden;
+      background-color: #111111;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
     }
   </style>
 </head>
 <body>
+
+  <!-- Yönlendirme döngüsünü kırmak için doğrudan embed parametresi ekliyoruz -->
+  <iframe src="https://workbee-focus.streamlit.app/?embed=true"></iframe>
+
   <script>
-    // Tarayıcı yönlendirmeyi hızlandırmak için JS köprüsü
-    window.location.replace("https://workbee-focus.streamlit.app");
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js');
+      });
+    }
   </script>
 </body>
 </html>
