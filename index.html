@@ -20,20 +20,36 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-      background-color: #111111;
+      background-color: #111111; /* Streamlit koyu temana tam uyum */
     }
-    iframe {
+    
+    /* ALT BARDAKİ REKLAMI EKRANIN DIŞINA İTEN SİHİRLİ MASKELER */
+    .iframe-container {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
+      overflow: hidden;
+    }
+
+    iframe {
+      width: 100%;
+      /* Yüksekliği %105 yaparak o alt barda duran beyaz şeridi ekranın altına taşırız */
+      height: 105%; 
       border: none;
       display: block;
+      /* iOS Safari alt bar gizleme optimizasyonu */
+      position: absolute;
+      top: 0;
     }
   </style>
 </head>
 <body>
 
-  <!-- Yönlendirme döngüsünü kırmak için doğrudan embed parametresi ekliyoruz -->
-  <iframe src="https://workbee-focus.streamlit.app/?embed=true"></iframe>
+  <div class="iframe-container">
+    <iframe src="https://workbee-focus.streamlit.app/?embed=true"></iframe>
+  </div>
 
   <script>
     if ('serviceWorker' in navigator) {
